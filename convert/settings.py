@@ -28,7 +28,8 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['shjens.pythonanywhere.com']
-
+#git reset --hard
+#git pull
 
 # Application definition
 
