@@ -4,7 +4,7 @@ import yfinance as yf
 # Create your views here.
 
 
-def convert(request, amt):
+def convert(request,base, amt):
     ccys = ['USDHKD=X','GBPUSD=X','USDSGD=X','USDCHF=X','USDCAD=X', 'EURUSD=X']
     df = yf.download(ccys, period='5d').Close
     cols = list(df.columns )
@@ -15,8 +15,6 @@ def convert(request, amt):
     df.gbp = 1 / df.gbp
     df.eur = 1 / df.eur
     df = df.iloc[-1]
-    print(df)
-    base = 'gbp'
 
     if base == 'usd':
         base_rate = 1
