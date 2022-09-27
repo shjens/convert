@@ -30,7 +30,7 @@
                     <form method="POST">{% csrf_token %}
                          <div class="form-group">
                               <div class="col text-center">
-                             <input type="text" class="justify-content-center form-control" style="text-align:center;" placeholder="enter amount" {{ form.amount }}>
+                             <input type="text" class="justify-content-center form-control" onfocus="this.value=''" style="text-align:center;" placeholder="enter amount" {{ form.amount }}>
                              <button type="submit" class="btn btn-info m-3 btn-lg ">Convert</button>
                               </div>
                          </div>

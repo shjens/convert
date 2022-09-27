@@ -16,7 +16,7 @@ def convert(request, base):
             form = FormAmount()
             amt = 100
 
-    ccys = ['USDHKD=X','GBPUSD=X','USDSGD=X','USDCHF=X','USDCAD=X', 'EURUSD=X']
+    ccys = ['USDHKD=X', 'GBPUSD=X', 'USDSGD=X', 'USDCHF=X', 'USDCAD=X', 'EURUSD=X']
     df = yf.download(ccys, period='5d').Close
     cols = list(df.columns )
     cols = [x.lower() for x in cols]
