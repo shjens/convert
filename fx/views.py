@@ -2,9 +2,20 @@ from django.shortcuts import render
 import yfinance as yf
 
 # Create your views here.
+from fx.forms import FormAmount
 
 
-def convert(request,base, amt):
+def convert(request, base):
+    amt = 100
+    form = FormAmount(request.POST or None)
+    if request.method == "POST":
+
+        if form.is_valid():
+            amt = float(form.data['amount'])
+        else:
+            form = FormAmount()
+            amt = 100
+
     ccys = ['USDHKD=X','GBPUSD=X','USDSGD=X','USDCHF=X','USDCAD=X', 'EURUSD=X']
     df = yf.download(ccys, period='5d').Close
     cols = list(df.columns )
@@ -30,6 +41,7 @@ def convert(request,base, amt):
     eur_amt = round(amt / base_rate *  df.loc['eur'], 2)
 
     context = {
+        'form': form,
         'base': base,
         'amt': amt,
         'usd': usd_amt,
@@ -40,6 +52,7 @@ def convert(request,base, amt):
         'cad': cad_amt,
         'eur': eur_amt
     }
+
 
     return render(request, 'fx/convert.html', context)
 

@@ -27,9 +27,10 @@ DEBUG = True
 # DEBUG = False
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['shjens.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1','shjens.pythonanywhere.com']
 #git reset --hard
 #git pull
+# check my notes in tradelab notes
 
 # Application definition
 

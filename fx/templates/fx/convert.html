@@ -19,15 +19,25 @@
 {% block body %}
 {% load humanize %}
 
-    <div class="container mt-3 align-items-center">
+    <div class="container mt-3">
 
         <div class="row">
             <div class="col-sm-10">
                 <div class="card card-body flex-fill align-items-center justify-content-between bg-dark border-light mt-3">
-                    <h1 class="m-3"><a class="text-decoration-none text-primary">{{ amt }} {{ base }} is worth:</a>
+                    <h1 class="m-3"><a class="text-decoration-none text-primary">Base Ccy: {{ base }}</a>
                     </h1>
 
-                    <h2 class="text-light">usd : {{ usd | intcomma }}</h2>
+                    <form method="POST">{% csrf_token %}
+                         <div class="form-group">
+                              <div class="col text-center">
+                             <input type="text" class="justify-content-center form-control" style="text-align:center;" placeholder="enter amount" {{ form.amount }}>
+                             <button type="submit" class="btn btn-info m-3 btn-lg ">Convert</button>
+                              </div>
+                         </div>
+                    </form>
+
+
+                    <h2 class="text-light">usd : {{ usd | intcomma}}</h2>
                     <h2 class="text-light">eur : {{ eur | intcomma}}</h2>
                     <h2 class="text-light">gbp : {{ gbp | intcomma}}</h2>
                     <h2 class="text-light">chf : {{ chf | intcomma}}</h2>
@@ -43,8 +53,6 @@
     <script>
 
         function formatNumber(number) {
-            // this puts commas into the number eg 1000 goes to 1,000,
-            // i pulled this from stack overflow, i have no idea how it works
             return Math.floor(number)
                 .toString()
                 .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
